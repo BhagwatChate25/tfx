@@ -19,14 +19,15 @@
 ## Major Features and Improvements
 
 *   Supports different types of quantizations on TFLite conversion using
-    TFLITE_REWRITER by setting `quantization_optimizations`,
-    `quantization_supported_types` and `quantization_enable_full_integer`. Flag
+    TFLITE_REWRITER by setting quantization_optimizations,
+    quantization_supported_types and quantization_enable_full_integer. Flag
     definitions can be found here: [Post-traning
     quantization](https://www.tensorflow.org/lite/performance/post_training_quantization).
-*   Added automatic population of `tfdv.StatsOptions.vocab_paths` when computing
+*   Added automatic population of tfdv.StatsOptions.vocab_paths when computing
     statistics within the Transform component.
 
 ## Breaking changes
+*   Deprecated input/output compatibility aliases for Pusher.
 
 ### For pipeline authors
 
@@ -34,6 +35,8 @@
     quantization_optimizations = [tf.lite.Optimize.DEFAULT] will perform the
     same type of quantization, dynamic range quantization. Users of the
     TFLITE_REWRITER who do not enable quantization should be uneffected.
+*   Deprecated input/output compatibility aliases for ExampleValidator,
+    Evaluator and Trainer.
 *   Default value for `infer_feature_shape` for SchemaGen changed from `False`
     to `True`, as indicated in previous release log. The inferred schema might
     change if you do not specify `infer_feature_shape`. It might leads to
@@ -64,8 +67,6 @@
     moved to `tfx.dsl.components.common.resolver.ResolverStrategy`, with its
     old module path kept as a deprecated alias, which will be removed in a
     future version.
-*   Deprecated input/output compatibility aliases for ExampleValidator,
-    Evaluator, Trainer and Pusher.
 
 ## Bug fixes and other changes
 
@@ -84,7 +85,6 @@
     on Kubeflow.
 *   Depends on `apache-beam[gcp]>=2.27,<3`.
 *   Depends on `ml-metadata>=0.27.0,<0.28.0`.
-*   Depends on `numpy>=1.16,<1.20`.
 *   Depends on `pyarrow>=1,<3`.
 *   Depends on `tensorflow>=1.15.2,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3`.
 *   Depends on `tensorflow-data-validation>=0.27.0,<0.28.0`.
@@ -94,8 +94,6 @@
 *   Depends on `tfx-bsl>=0.27.0,<0.28.0`.
 
 ## Documentation updates
-
-*   N/A
 
 # Version 0.26.1
 
